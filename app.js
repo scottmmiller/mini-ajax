@@ -21,6 +21,23 @@ $(document).ready(function() {
 		});
 	});
 
+	$('#addUser').on('click', function(e) {
+		e.preventDefault();
+		var userName = $('#name').val();
+		var userJob = $('#job').val();
+		return $.ajax({
+			method: 'POST',
+			url: 'http://reqr.es/api/user',
+			data: {name: userName, job: userJob},
+			success: function(res) {
+				$('#recentUser').html(
+					'<li>' + 'name: ' + res.name + '</li>' +
+					'<li>' + 'job: ' + res.job + '</li>' +
+					'<li>' + 'created at: ' + res.createdAt + '</li>')
+			}
+		});
+	});
+
 
 
 });
